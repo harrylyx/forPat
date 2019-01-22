@@ -1,8 +1,0 @@
-#include <stdio.h>
-#define INF 1000000000
-int main(){
-#ifdef LOCAL
-	freopen("data.in","r",stdin);
-	freopen("data.out","w",stdin);
-#endif // LOCAL
-}
