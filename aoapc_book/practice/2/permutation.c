@@ -1,40 +1,46 @@
 #include <stdio.h>
 
-int iseq(int num){
-	int a = num/100;
-	int b = num/10%10;
-	int c = num%10;
-	if(a==b || a==c || b==c)
-		return 0;
-	return 1;
-}
-
-int is2eq(int num1, int num2){
-	int a1 = num1/100;
-	int b1 = num1/10%10;
-	int c1 = num1%10;
-	int a2 = num2/100;
-	int b2 = num2/10%10;
-	int c2 = num2%10;
-	if(a1==a2 || a1==b2 || a1==c2 || b1==a2 || b1==b2 || b1==c2 || c1==a2 || c1==b2 || c1==c2)
-		return 0;
-	return 1;
-}
-
 int main(){
-    for(int one=123;one<=329;one++){
-        if(iseq(one) == 0)
-			continue;
-        int two = one * 2;
-        if(iseq(two) == 0)
-			continue;
-    }
-    for(int a=1;a<=3;a++){
+    for(int a=1;a<=4;a++){
 		for(int b=1;b<=9;b++){
+			if(b==a)
+				continue;
+			//printf("b%d\n",b);
 			for(int c=1;c<=9;c++){
-				int one = 100*a+10*b+c;
-
+				if(c==a||c==b)
+					continue;
+				//printf("c%d\n",c);
+				for(int d=1;d<=9;d++){
+					if(d==a||d==b||d==c)
+						continue;
+					for(int e=1;e<=9;e++){
+						if(e==a||e==b||e==c||e==d)
+							continue;
+						for(int f=1;f<=9;f++){
+							if(f==a||f==b||f==c||f==d||f==e)
+								continue;
+							for(int g=1;g<=9;g++){
+								if(g==a||g==b||g==c||g==d||g==e||g==f)
+									continue;
+								for(int h=1;h<=9;h++){
+									if(h==a||h==b||h==c||h==d||h==e||h==f||h==g)
+										continue;
+									for(int i=1;i<=9;i++){
+										if(i==a||i==b||i==c||i==d||i==e||i==f||i==g||i==h)
+											continue;
+										int one = 100*a+10*b+c;
+										int two = 100*d+10*e+f;
+										int three = 100*g+10*h+i;
+                                        if(one*2 == two && one*3 == three)
+											printf("%d %d %d\n", one, two, three);
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 		}
     }
+    return 0;
 }
