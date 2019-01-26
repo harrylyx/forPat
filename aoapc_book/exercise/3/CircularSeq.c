@@ -16,15 +16,14 @@ int main(){
     scanf("%d", &a);
     while(a--){
         char seq[maxn];
-        while(scanf("%s", seq)){
-            int len = strlen(seq);
-            int ans = 0;
-            for(int i=1;i<len;i++)
-                if(less(seq, i, ans)) ans = i;
-            for(int i=0;i<len;i++)
-                putchar(seq[(ans+i)%len]);
-			putchar('\n');
-        }
+        scanf("%s", seq);
+        int len = strlen(seq);
+        int ans = 0;
+        for(int i=1;i<len;i++)
+            if(less(seq, i, ans)) ans = i;
+        for(int i=0;i<len;i++)
+            putchar(seq[(ans+i)%len]);
+		putchar('\n');
     }
     return 0;
 }
