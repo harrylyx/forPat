@@ -1,63 +1,40 @@
 #include <stdio.h>
 #include <string.h>
+#define maxn 1010
+
+int min(int a,int b){
+    if(a<b)
+		return a;
+	else
+		return b;
+}
 
 int main(){
-
-    int idx = 1;
-    int num;
-    while(scanf("%d", &num) && num){
-		printf("Game %d:\n",idx);
-		int correct[num];
-		int line[num];
-		int idx2 = 0;
-        int idx3 = 0;
-        while(scanf("%d", &line[idx3]) && idx3 < num){
-            if(idx2==num-1){
-				memcpy(correct, line, sizeof(line));
+    int kase = 0;
+    int n, a[maxn], b[maxn];
+    while(scanf("%d", &n) && n){
+		printf("Game %d:\n",++kase);
+		int c1[11],c2[11];
+		memset(c1, 0, sizeof(c1));
+		for(int i=0;i<n;i++){
+			scanf("%d",&a[i]);
+			c1[a[i]]++;
+		}
+        while(1){
+			memset(c2, 0, sizeof(c2));
+            int A=0, B=0;
+            for(int i=0;i<n;i++){
+				scanf("%d",&b[i]);
+				c2[b[i]]++;
+                if(a[i] == b[i])
+                    A++;
             }
-            else if(idx2>3 && (idx2+1)%num==0){
-            	//for(int j=0;j<num;j++) printf("%d", correct[j]);
-				int flag=0;
-                for(int j=0;j<num;j++) if(line[j]==0) flag++;
-                if(flag==num) break;
-                int line2[num];
-                int line3[num];
-                memset(line2,0,sizeof(line2));
-                memset(line3,0,sizeof(line3));
-                for(int j=0;j<num;j++){
-					/*
-					printf("line2 ");
-					for(int j=0;j<num;j++) printf("%d", line2[j]);
-					printf("\n");
-					printf("line3 ");
-					for(int j=0;j<num;j++) printf("%d", line3[j]);
-					printf("\n");
-					*/
-					for(int k=0;k<num;k++){
-						if(line[k] == correct[j] && k==j){
-							line2[j] = 2;
-							line3[k] = 2;
-							break;
-						}
-						if(line[k] == correct[j] && line3[k] == 0 && line2[j] == 0)
-							line3[k] = 1;
-						if(line[k] == correct[j] && line2[j] == 0 && line3[k] == 0)
-							line2[j] = 1;
-					}
-                }
-                int p=0,q=0;
-                for(int j=0;j<num;j++){
-					if(line3[j]==2) p++;
-					if(line3[j]==1) q++;
-                }
-				printf("(%d,%d)\n",p,q);
+            if(b[0]==0) break;
+            for(int i=1;i<10;i++){
+                B+=min(c1[i],c2[i]);
             }
-            idx2++;
-            idx3++;
-			if(idx3==num) idx3=0;
-			//printf("(%d)\n",idx3);
+            printf("	(%d,%d)\n",A,B-A);
         }
-        idx++;
     }
     return 0;
 
