@@ -33,7 +33,7 @@ int main(){
             for(int i=1;i<10;i++){
                 B+=min(c1[i],c2[i]);
             }
-            printf("	(%d,%d)\n",A,B-A);
+            printf("    (%d,%d)\n",A,B-A);
         }
     }
     return 0;
