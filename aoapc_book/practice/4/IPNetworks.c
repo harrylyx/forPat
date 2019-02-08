@@ -28,7 +28,7 @@ void encode(int n, char *ip){
 	for(;i<strlen(ip);){
 		if(ip[i++] == '.'){
 			idx = 0;
-			int inum =  atoi(num);
+			int inum = atoi(num);
 			dec_to_bin(inum, n, idx2);
 			num[0]='\0';
 			num[1]='\0';
