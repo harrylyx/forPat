@@ -1,12 +1,8 @@
 #include <stdio.h>
+#include <math.h>
 
 int main(){
-    int a[4] = {0,0,1,1};
-    int num = 0;
-    for(int i=0;i<4;i++){
-		num <<= 1;
-		num += a[i];
-    }
-	printf("%d",num);
+	printf("%d\n",5/2);
+	//printf("%f",pow(2,32)-1);
 }
 

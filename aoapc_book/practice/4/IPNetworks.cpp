@@ -40,14 +40,15 @@ int main()
         unsigned int ans = ~0, tt;
         for(int i=1;i<n;i++)
         {
-            unsigned int q = num[i] ^ num[0];
-            while(q)
+            unsigned int q = num[i] ^ num[0]; // 与第一位按位异或
+            while(q) //寻找第一位不同的地方然后停止
             {
-                ans &= ~(q | (q-1));
-                q = q&(q-1);
+                ans &= ~(q | (q-1));//与低一位按位或然后取反
+                q = q&(q-1);//与低一位按位与
             }
+            //ans &= q;
         }
-        tt = ans & num[0];
+        tt = ans & num[0]; //子网掩码与第一个与即为最小ip
         int sans[4]={};
         int pos = 0;
         while(tt != 0)

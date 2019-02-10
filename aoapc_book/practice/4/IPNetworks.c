@@ -22,7 +22,7 @@ void dec_to_bin(int num, int n, int idx){
 
 void encode(int n, char *ip){
 	int i = 0;
-	char num[4];
+	char num[5];
     int idx = 0;
     int idx2 = 0;
 	for(;i<strlen(ip);){
@@ -78,7 +78,7 @@ int main(){
 	}
 	int flag = 0;
     while(fscanf(fin, "%d", &n) != EOF){
-		if(flag) fprintf(fout, "\n");
+		//if(flag) fprintf(fout, "\n");
 		flag = 1;
 		memset(code, 0, sizeof(code));
 		char ip[16];
@@ -105,13 +105,15 @@ int main(){
         }
         decode(result,fout);
         fprintf(fout, "\n");
+
         for(int j=0; j<32; j++){
 			if(j<jdx) result[j] = 1;
 			else result[j] = 0;
         }
         decode(result,fout);
+        fprintf(fout, "\n");
     }
-    fprintf(fout, "\n");
+
     if(DEBUG){
 		fclose(fin);
 		fclose(fout);
