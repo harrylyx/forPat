@@ -7,12 +7,10 @@
 
 using namespace std;
 
-
 const int maxn = 1000;
 
 int c[5];
 int n, quantum, var[26], ip[maxn];
-// ip[pid]是程序pid的当前行号
 bool locked;
 char prog[maxn][10];
 
