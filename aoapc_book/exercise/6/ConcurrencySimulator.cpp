@@ -47,7 +47,6 @@ void run(int pid)
 				int pid2 = blockQ.front();
 				blockQ.pop();
 				readyQ.push_front(pid2);
-				// deque的操作push_front，插入到队首
 			}
 			q -= c[3];
 			break;
