@@ -14,22 +14,22 @@ int n, quantum, var[26], ip[maxn];
 bool locked;
 char prog[maxn][10];
 
-deque<int> readyQ; // ÒòÎª×èÖ¹¶ÓÁĞµÄ³ÌĞòÊÇ²åÈëµ½µÈ´ı¶ÓÁĞµÄÊ×²¿£¬ËùÒÔ²»ÄÜÓÃqueue£¬ÒªÓÃdeque
+deque<int> readyQ; // å› ä¸ºé˜»æ­¢é˜Ÿåˆ—çš„ç¨‹åºæ˜¯æ’å…¥åˆ°ç­‰å¾…é˜Ÿåˆ—çš„é¦–éƒ¨ï¼Œæ‰€ä»¥ä¸èƒ½ç”¨queueï¼Œè¦ç”¨deque
 queue<int> blockQ;
 
 void run(int pid)
 {
 	int q = quantum;
-	// Ã¿´Î×î¶àÔËĞĞquantumÊ±¼ä
+	// æ¯æ¬¡æœ€å¤šè¿è¡Œquantumæ—¶é—´
 	while (q > 0) {
 		char *p = prog[ip[pid]];
 		switch (p[2]) {
-		case '=': // ¸³ÖµÓï¾ä
-			// ¸³ÖµÒª¿¼ÂÇÁ½Î»ÊıºÍÒ»Î»ÊıµÄÇé¿ö
+		case '=': // èµ‹å€¼è¯­å¥
+			// èµ‹å€¼è¦è€ƒè™‘ä¸¤ä½æ•°å’Œä¸€ä½æ•°çš„æƒ…å†µ
 			var[p[0] - 'a'] = isdigit(p[5]) ? (p[4] - '0') * 10 + p[5] - '0' : p[4] - '0';
 			q -= c[0];
 			break;
-		case 'i': // ´òÓ¡Óï¾ä
+		case 'i': // æ‰“å°è¯­å¥
 			printf("%d: %d\n", pid + 1, var[p[6] - 'a']);
 			q -= c[1];
 			break;
@@ -70,7 +70,7 @@ int main()
 		for (int i = 0; i < n; i++) {
 			fgets(prog[line++], maxn, stdin);
 			ip[i] = line - 1;
-			while (prog[line - 1][2] != 'd') { // ÅĞ¶ÏÊÇ·ñÊÇend
+			while (prog[line - 1][2] != 'd') { // åˆ¤æ–­æ˜¯å¦æ˜¯end
 				fgets(prog[line++], maxn, stdin);
 			}
 			readyQ.push_back(i);
@@ -78,9 +78,9 @@ int main()
 
 		locked = false;
 		while (!readyQ.empty()) {
-			// È¡³ö¶ÓÊ×ÔªËØÖ´ĞĞ
+			// å–å‡ºé˜Ÿé¦–å…ƒç´ æ‰§è¡Œ
 			int pid = readyQ.front();
-			readyQ.pop_front(); // ±ğÍüÁË°Ñ¶ÓÊ×³ö¶Ó
+			readyQ.pop_front(); // åˆ«å¿˜äº†æŠŠé˜Ÿé¦–å‡ºé˜Ÿ
 			run(pid);
 		}
 		if (T) {
