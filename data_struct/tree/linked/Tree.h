@@ -90,7 +90,8 @@ bool Tree::DeleteNode(int nodeIndex, Node *pNode)
         pNode->data = now->data;
     }
 
-    now->DeleteNode();
+    now->DeleteNode(now);
+    now = nullptr;
 
     return true;
 }

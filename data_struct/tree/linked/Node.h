@@ -21,7 +21,7 @@ public:
     void PreorderTraversal(Node *now);
     void InorderTraversal(Node *now);
     void PostorderTraversal(Node *now);
-    void DeleteNode();
+    void DeleteNode(Node *now);
 };
 
 Node::Node()
@@ -44,6 +44,21 @@ Node::Node(int index, int data)
 
 Node::~Node()
 {
+    index = NULL;
+    data = NULL;
+    left = nullptr;
+    right = nullptr;
+    if (this->parent != nullptr)
+    {
+        if (this->parent->left == this)
+        {
+            this->parent->left = nullptr;
+        }
+        if (this->parent->right == this)
+        {
+            this->parent->right = nullptr;
+        }
+    }
 }
 
 void Node::printNode()
@@ -103,24 +118,19 @@ void Node::PostorderTraversal(Node *now)
     }
 }
 
-void Node::DeleteNode()
+void Node::DeleteNode(Node *now)
 {
-    if (this->left != nullptr)
-        this->left->DeleteNode();
-    if (this->right != nullptr)
-        this->right->DeleteNode();
-    if (this->parent != nullptr)
-    {
-        if (this->parent->left == this)
-        {
-            this->parent->left = nullptr;
-        }
-        if (this->parent->right == this)
-        {
-            this->parent->right = nullptr;
-        }
-    }
-    delete this;
+    if (now == nullptr)
+        return;
+
+    Node *cleft = now->left;
+    Node *cright = now->right;
+
+    delete now;
+    now = nullptr;
+
+    DeleteNode(cleft);
+    DeleteNode(right);
 }
 
 #endif
